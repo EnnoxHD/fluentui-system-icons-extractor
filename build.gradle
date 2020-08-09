@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_14
+	targetCompatibility = JavaVersion.VERSION_14
+	modularity.inferModulePath = true
+}
+
+application {
+	mainModule = 'com.github.ennoxhd.fluentui.extractor'
+	mainClass  = 'com.github.ennoxhd.fluentui.extractor.app.FluentUiResources'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+}
+
+task debug (type: Exec) {
+	group = 'application'
+	description = 'Runs this project as a JVM application with debugging enabled'
+	def baseCommand = ['run', '--debug-jvm']
+	doFirst {
+		if (System.properties['os.name'].toLowerCase().contains('windows')) {
+			commandLine = ['cmd', '/c', 'gradlew.bat'] + baseCommand
+		} else {
+			commandLine = ['sh', 'gradlew'] + baseCommand
+		}
+	}
+}
