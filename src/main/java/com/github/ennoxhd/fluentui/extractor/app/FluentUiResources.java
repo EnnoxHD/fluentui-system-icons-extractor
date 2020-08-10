@@ -25,7 +25,6 @@ public final class FluentUiResources {
 		final int DEFAULT_SIZE = 24;
 		final Set<String> DEFAULT_TYPES = Collections.unmodifiableSet(Set.of("regular", "filled"));
 		final boolean USE_ORIGINAL_NAME = false;
-		final String CSS_PREFIX = "flt-";
 
 		// Data
 
@@ -162,7 +161,7 @@ public final class FluentUiResources {
 		curatedIcons.stream()
 				.forEach(key -> {
 					Path source = allIcons.get(key).toPath();
-					String name = USE_ORIGINAL_NAME ? source.getFileName().toString() : CSS_PREFIX + key.icon.replace('_', '-') + ".svg";
+					String name = USE_ORIGINAL_NAME ? source.getFileName().toString() : key.icon.replace('_', '-') + ".svg";
 					Path target = new File(outputDirs.get(key.type), name).toPath();
 					try {
 						Files.copy(source, target);
