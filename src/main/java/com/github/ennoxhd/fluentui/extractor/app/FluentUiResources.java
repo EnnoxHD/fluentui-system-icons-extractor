@@ -170,6 +170,27 @@ public final class FluentUiResources {
 						exit();
 					}
 				});
+		
+		outputDirs.values().stream()
+				.forEach(sourceDir -> {
+					outputDirs.values().stream()
+							.filter(targetDir -> !targetDir.equals(sourceDir))
+							.forEach(targetDir -> {
+								Set<String> targetFileNames = Set.of(targetDir.listFiles()).stream()
+										.map(file -> file.getName())
+										.collect(Collectors.toUnmodifiableSet());
+								Set.of(sourceDir.listFiles()).stream()
+										.filter(sourceFile -> !targetFileNames.contains(sourceFile.getName()))
+										.forEach(sourceFile -> {
+											try {
+												Files.copy(sourceFile.toPath(), new File(targetDir, sourceFile.getName()).toPath());
+											} catch (IOException e) {
+												e.printStackTrace();
+												exit();
+											}
+										});
+							});
+				});
 
 		System.out.println("Done!");
 	}
