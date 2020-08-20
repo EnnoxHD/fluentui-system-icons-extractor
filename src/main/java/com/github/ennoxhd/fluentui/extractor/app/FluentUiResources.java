@@ -28,7 +28,7 @@ public final class FluentUiResources {
 
 		// Data
 
-		final Path resources = Path.of(System.getProperty("user.home") + "/Downloads/fluentui-system-icons-1.1.45/assets");
+		final Path resources = Path.of(System.getProperty("user.home") + "/Downloads/fluentui-system-icons-1.1.46/assets");
 		final Path output = Path.of(System.getProperty("user.home") + "/Downloads/fluentui");
 
 		// Read data
