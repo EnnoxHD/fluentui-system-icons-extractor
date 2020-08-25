@@ -19,6 +19,13 @@ import java.util.stream.Collectors;
 public final class FluentUiResources {
 
 	public static void main(String args[]) {
+		
+		if(args == null
+				|| args.length != 1
+				|| args[0] == null
+				|| !Pattern.compile("^[0-9]+\\.[0-9]+\\.[0-9]+$").matcher(args[0]).find()) {
+			throw new RuntimeException("must provide a version number via --args '<version-number>'");
+		}
 
 		// Defaults
 
@@ -28,7 +35,7 @@ public final class FluentUiResources {
 
 		// Data
 
-		final Path resources = Path.of(System.getProperty("user.home") + "/Downloads/fluentui-system-icons-1.1.46/assets");
+		final Path resources = Path.of(System.getProperty("user.home") + "/Downloads/fluentui-system-icons-" + args[0] + "/assets");
 		final Path output = Path.of(System.getProperty("user.home") + "/Downloads/fluentui");
 
 		// Read data
