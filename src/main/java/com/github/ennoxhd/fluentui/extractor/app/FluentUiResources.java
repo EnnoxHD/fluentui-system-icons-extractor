@@ -24,7 +24,7 @@ public final class FluentUiResources {
 				|| args.length != 1
 				|| args[0] == null
 				|| !Pattern.compile("^[0-9]+\\.[0-9]+\\.[0-9]+$").matcher(args[0]).find()) {
-			throw new RuntimeException("must provide a version number via --args '<version-number>'");
+			throw new RuntimeException("must provide a version number via --args=\"<version-number>\"");
 		}
 
 		// Defaults
